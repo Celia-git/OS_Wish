@@ -29,6 +29,24 @@ void print_error_and_exit(const char *msg, int status_code)
 
 void interactive_mode()
 {
+    char *line = NULL;
+    size_t size = 0;
+
+    while (1) {
+        // print
+        printf("wish> ");
+        fflush(stdout);
+
+        // input
+        ssize_t nread = getline(&line, &size, stdin);
+        if (nread == -1) {
+            
+            exit(0);
+        }
+
+        // update when dee adds changes to shell_loop
+        printf("%s", line);
+    }
 }
 
 void batch_mode(const char *filename)
